@@ -19,8 +19,8 @@ This project provides a FastAPI-based web service to convert PDF files to images
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/pdf2img-converter.git
-    cd pdf2img-converter
+    git clone https://github.com/PongpreechaSuea/PDF2Image.git
+    cd PDF2Image
     ```
 
 2. Create a virtual environment and activate it:
@@ -52,6 +52,8 @@ BASE_URL = f"http://{HOST}:{PORT}/static/"
 Start the FastAPI server:
 
 ```cmd
+python ./app.py # http://localhost:3000/docs
+or
 uvicorn src.main:app --host localhost --port 3000
 ```
 
