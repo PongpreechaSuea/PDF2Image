@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  pdf2image:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./temp:/app/temp
+    environment:
+      - CLASS_MODEL=PDF2IMAGE
+      - RESULTS=/app/temp/pdf
+      - HOST=0.0.0.0
+      - PORT=3000
+      - BASE_URL=http://0.0.0.0:3511/static/
+
+
+# docker-compose up --build
+# docker-compose up --build -d # (ทำงานเบื้องหลัง)
+# docker-compose down
