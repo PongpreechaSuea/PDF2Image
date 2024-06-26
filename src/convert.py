@@ -15,7 +15,7 @@ class ConvertPDF2img:
         logging.basicConfig(filename=log_file, level=logging.INFO,
                             format='%(asctime)s - %(levelname)s - %(message)s',
                             encoding='utf-8')
-        logging.info(f"Initialized ConvertPDF2Image. Results directory: {self.RESULTS_DIR}")
+        logging.info(f"Initialized ConvertPDF2Image. Results directory: {self.results}")
 
         
     def pdf2img(self, path: str = None):

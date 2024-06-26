@@ -3,3 +3,5 @@ uvicorn
 poppler-utils
 pdf2image
 python-multipart
+schedule
+tqdm

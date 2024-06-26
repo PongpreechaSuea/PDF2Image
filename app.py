@@ -2,10 +2,15 @@ from fastapi import FastAPI, File, Query, UploadFile, APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 from src.convert import ConvertPDF2img
 from src.config import HOST, PORT, RESULTS, BASE_URL
 import tempfile
+import threading
+import time
+import schedule
 import os
+import uuid
 
 
 convert = ConvertPDF2img()
@@ -47,6 +52,13 @@ async def pdf2image(file: UploadFile = File(...)):
 ###########################################################################################################################################
 ###########################################################################################################################################
 # Chunked Upload:
+
+class ConvertResponse(BaseModel):
+    service: str
+    message: str
+    file_name: str
+    file_content_type: str
+    file_urls: list
 
 chunked_router = APIRouter(prefix="/v1/api/chunked", tags=['chunked_upload'])
 
@@ -95,7 +107,6 @@ async def finish_upload(upload_id: str):
         del upload_sessions[upload_id]
         
         return {
-            "service": CLASS_MODEL,
             "message": "File converted successfully",
             "file_name": session["file_name"],
             "file_content_type": "application/pdf",
